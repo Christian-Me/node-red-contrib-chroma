@@ -1,0 +1,65 @@
+<script type="text/html" data-help-name="chroma">
+    <H1>A Node-RED node for color conversions</h1>
+    <p></p>
+    <p>This node is based on the <a href="https://vis4.net/chromajs/">chroma.js</a> 
+        <i>chroma.js for all kinds of color conversions and color scales.</i></p>
+    <p></p>
+    <p>For further details please refer to the documentation on <a href="https://flows.nodered.org/node/node-red-contrib-chroma">flows.nodered.org</a></p>
+    <p></p>
+
+
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload<span class="property-type">string | number| object | array</span></dt>
+        <dd>The same formats as the output formats are supported as input format except CIExy</dd>
+    </dl>
+    <dl class="message-properties">
+        <dt>api<span class="property-type">array</span></dt>
+        <code>
+        [
+            { "scale": ["#fafa6e","#2A4858"] },
+            { "mode": "lch" },
+            { "colors": 6 }
+        ]
+        </code>
+        <dd>an array of api call methods. More info at <a href="https://flows.nodered.org/node/node-red-contrib-chroma">flows.nodered.org</a></dd>
+    </dl>
+
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>payload<span class="property-type">string | number| object<</span></dt>
+        <dd>selected color value formatted as defined.</dd>
+        <dt>topic<span class="property-type">string | msg | flow | global</span></dt>
+        <dd>A string to identify the value. Can be defined as a constant Sting, by a message on the input or a context value in flow or global context.</dd>
+    </dl>
+
+    <h2>Configuration</h2>
+
+    <h3>Supported Formats</h3>
+    <p>send and received as <code>msg.payload</code></p>
+    <ul>
+        <li>Hex string: "#ffffff"</li>
+        <li>Hex alpha string: "#ffffffff"</li>
+        <li>RGB string: "rgb(255, 255, 255)"</li>
+        <li>RGBA string: "rgba(255, 255, 255, 1)"</li>
+        <li>RGB object: <code>{r: 255, g: 255, b: 255}</code></li>
+        <li>RGBA object: <code>{r: 255, g: 255, b: 255, a: 1}</code></li>
+        <li>HSL string: "hsl(360, 100%, 100%)"</li>
+        <li>HSLA string: "hsla(360, 100%, 100%, 1)"</li>
+        <li>HSL object: <code>{h: 360, s: 100, l: 100}</code></li>
+        <li>HSLA object: <code>{h: 360, s: 100, l: 100, a: 1}</code></li>
+        <li>HSV object: <code>{h: 360, s: 100, v: 100}</code></li>
+        <li>HSVA object: <code>{h: 360, s: 100, v: 100, a: 1}</code></li>
+        <li>HSI object: <code>{h: 360, s: 100, i: 100}</code></li>
+        <li>HSIA object: <code>{h: 360, s: 100, i: 100, a: 1}</code></li>
+        <li>LAB object: <code>{l: 360, a: 100, b: 100}</code></li>
+        <li>LCH object: <code>{l: 360, c: 100, h: 100}</code></li>
+        <li>Temperature <code>1000..40,000</code></li>
+        <li>Luminace <code>0..1</code></li>
+        <li>RGBW object: <code>{r: 255, g: 255, b: 255, w: 255}</code></li>
+        <li>CIExyz object: <code>{x: 1, y: 1, z: 1}</code></li>
+        <li>CIExy object: <code>{x: 1, y: 1}</code></li>
+    </ul>
+</p>
+ 
+</script>

@@ -1,0 +1,52 @@
+{
+    "chroma" : {
+        "label" : {
+            "payload": "Payload",
+            "name": "Name",
+            "input": "input",
+            "output": "output",
+            "array2object": "Convert arrays to objects",
+            "floatOutput": "output floating point values",
+            "relativeValues": "relative values"
+        },
+        "dropdown" : {
+            "outFormat": [
+                "hex string '#ffffff'",
+                "hex string with alpha '#ffffffff'",
+                "RGB string 'rgb(255,255,255)'",
+                "RGBA string with alpha 'rgba(255,255,255,1)'",
+                "HSL string 'hsl(360,100%,100%)'",
+                "HSLA string 'hsla(360,100%,100%,1)'",
+                "RGB object {r:255,g:255,b:255 }",
+                "RGBA object {r:255,g:255,b:255,a:1}",
+                "HSL object {h:360,s:100,l:100}",
+                "HSLA object {h:360,s:100,l:100,a:1}",
+                "HSV object {h:360,s:100,v:100}",
+                "HSVA object {h:360,s:100,v:100,a:1}",
+                "red 0..255",
+                "green 0..255",
+                "blue 0..255",
+                "alpha 0..1",
+                "hue 0..360",
+                "saturation 0..100",
+                "value 0..100",
+                "temperature 1000..40000",
+                "tuneable white {v:100,t:40000}",
+                "RGBW object {r:255,g:255,b:255,w:255}",
+                "HSI object {h:360,s:100,i:100}",
+                "named color 'red'",
+                "HSIA object {h:360,s:100,i:100,a:1}",
+                "LAB object {l,a,b}",
+                "LCH object {l,c,h}",
+                "Luminance 0..1",
+                "pass through",
+                "CIE xyz object {x:1,x:1,z:1}",
+                "CIE xy object {x:1,y:1}"
+            ],
+            "relativeValues" : [
+                "0..100 (in percent)",
+                "0..1 (as factor)"
+            ]
+        }
+    }
+}

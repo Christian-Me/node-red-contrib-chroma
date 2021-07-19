@@ -1,0 +1,84 @@
+<script type="text/javascript">
+  RED.nodes.registerType('chroma',{
+      category: 'chroma',
+      color: '#A6BBCF',
+      defaults: {
+          name: {value:""},
+          outFormat : {value:"hexString"},
+          array2object : {value:true},
+          floatOutput : {value:true},
+          inputRelativeValues : {value:"percent"},
+          outputRelativeValues : {value:"percent"},
+      },
+      inputs:1,
+      outputs:1,
+      icon: "chroma-icon.png",
+      label: function() {
+          return this.name||"chroma";
+      },
+      outputLabels: function(index) {
+        return this.outFormat||'output';
+      }
+  });
+</script>
+
+<script type="text/html" data-template-name="chroma">
+  <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> <span data-i18n='chroma.label.name'></span></label>
+      <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-outFormat" ><i class="fa fa-envelope-o"></i> <span data-i18n='chroma.label.payload'></span></label>
+    <select id="node-input-outFormat" style="width: 70%;">
+        <option value="hexString" data-i18n='chroma.dropdown.outFormat.0'></option>
+        <option value="hex8String" data-i18n='chroma.dropdown.outFormat.1'></option>
+        <option value="rgbString" data-i18n='chroma.dropdown.outFormat.2'></option>
+        <option value="rgbaString" data-i18n='chroma.dropdown.outFormat.3'></option>
+        <option value="hslString" data-i18n='chroma.dropdown.outFormat.4'></option>
+        <option value="hslaString" data-i18n='chroma.dropdown.outFormat.5'></option>
+        <option value="rgb" data-i18n='chroma.dropdown.outFormat.6'></option>
+        <option value="rgba" data-i18n='chroma.dropdown.outFormat.7'></option>
+        <option value="hsl" data-i18n='chroma.dropdown.outFormat.8'></option>
+        <option value="hsla" data-i18n='chroma.dropdown.outFormat.9'></option>
+        <option value="hsv" data-i18n='chroma.dropdown.outFormat.10'></option>
+        <option value="hsva" data-i18n='chroma.dropdown.outFormat.11'></option>
+        <option value="hsi" data-i18n='chroma.dropdown.outFormat.22'></option>
+        <option value="hsia" data-i18n='chroma.dropdown.outFormat.24'></option>
+        <option value="lab" data-i18n='chroma.dropdown.outFormat.25'></option>
+        <option value="lch" data-i18n='chroma.dropdown.outFormat.26'></option>
+        <option value="temperature" data-i18n='chroma.dropdown.outFormat.19'></option>
+        <option value="name" data-i18n='chroma.dropdown.outFormat.23'></option>
+        <option value="luminance" data-i18n='chroma.dropdown.outFormat.27'></option>
+        <option value="rgbw" data-i18n='chroma.dropdown.outFormat.21'></option>
+        <option value="CIExyz" data-i18n='chroma.dropdown.outFormat.29'></option>
+        <option value="CIExy" data-i18n='chroma.dropdown.outFormat.30'></option>
+        <option value="passTrough" data-i18n='chroma.dropdown.outFormat.28'></option>
+    </select>
+  </div>
+  <div class="form-row">
+    <label><i class="fa fa-arrow-right"></i>[ <span data-i18n='chroma.label.input'></span></label>
+    <label for="node-input-inputRelativeValues" style="width: 25%;"><span data-i18n='chroma.label.relativeValues'></span></label>
+    <select id="node-input-inputRelativeValues" style="width: 40%;">
+        <option value="percent" data-i18n='chroma.dropdown.relativeValues.0'></option>
+        <option value="factor" data-i18n='chroma.dropdown.relativeValues.1'></option>
+    </select>
+  </div>
+  <div class="form-row">
+    <label>]<i class="fa fa-arrow-right"></i> <span data-i18n='chroma.label.output'></span></label>
+    <input type="checkbox" checked id="node-input-array2object" style="display:inline-block; width:auto; vertical-align:top;">
+    <label style="width:auto" for="node-input-array2object"><i class="fa fa-object-group"></i> <span data-i18n='chroma.label.array2object'></span></label>
+  </div>
+  <div class="form-row">
+    <label>&nbsp;</label>
+    <input type="checkbox" checked id="node-input-floatOutput" style="display:inline-block; width:auto; vertical-align:top;">
+    <label style="width:auto" for="node-input-floatOutput"><i class="fa fa-cogs"></i> <span data-i18n='chroma.label.floatOutput'></span></label>
+  </div>
+  <div class="form-row">
+    <label>&nbsp;</label>
+    <label for="node-input-outputRelativeValues" style="width: 25%;"><span data-i18n='chroma.label.relativeValues'></span></label>
+    <select id="node-input-outputRelativeValues" style="width: 40%;">
+        <option value="percent" data-i18n='chroma.dropdown.relativeValues.0'></option>
+        <option value="factor" data-i18n='chroma.dropdown.relativeValues.1'></option>
+    </select>
+  </div>
+</script>
