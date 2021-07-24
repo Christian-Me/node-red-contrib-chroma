@@ -62,7 +62,7 @@ Node: CIExy can't be used as input as it can't be converted clearly to RGB *(or 
 
 ### msg.api
 
-the api can be accessed by sending an ? `array`of `objects` value
+the api can be accessed by sending an `array`of `objects`
 
 The first example of the [chroma.js api documentation](https://vis4.net/chromajs):
 
@@ -80,9 +80,9 @@ translates to
 ]
 ```
 
-This will generate a six colors scale form yellow to dark green
+This example will generate a six colors scale form yellow to dark green
 
-If the api call returns a function `msg.payload`will be used as it's parameter. If no `msg.payload` is sent the callback function is send to the output.
+If the api call returns a function `msg.payload` will be used as it's parameter. If no `msg.payload` is sent the callback function is send to the output.
 
 Subsequent messages (without `msg.api`) will return the result of the returned callback function
 
@@ -90,11 +90,11 @@ Subsequent messages (without `msg.api`) will return the result of the returned c
 
 All supported input formats can be selected as output. In addition CIExy can be selected
 
-All chroma.js multi value results (except strings) are formatted as an `array`. Tick the option to get the result as an `object`
+All chroma.js multi value results are formatted as an `array`. Tick the option to get the result as an `object`
 
-For relative values select the format `0..1` or `0..100` to emitted.
+For relative values select the format `0..1` or `0..100` to be emitted.
 
-Numerical values can be rounded or returned as float values
+Numerical values can be rounded integers or returned as float values
 
 
 

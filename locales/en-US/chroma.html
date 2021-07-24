@@ -16,10 +16,10 @@
     <dl class="message-properties">
         <dt>api<span class="property-type">array</span></dt>
         <code>
-        [
-            { "scale": ["#fafa6e","#2A4858"] },
-            { "mode": "lch" },
-            { "colors": 6 }
+        [<br>
+            { "scale": ["#fafa6e","#2A4858"] },<br>
+            { "mode": "lch" },<br>
+            { "colors": 6 }<br>
         ]
         </code>
         <dd>an array of api call methods. More info at <a href="https://flows.nodered.org/node/node-red-contrib-chroma">flows.nodered.org</a></dd>
@@ -27,10 +27,8 @@
 
     <h3>Outputs</h3>
     <dl class="message-properties">
-        <dt>payload<span class="property-type">string | number| object<</span></dt>
+        <dt>payload<span class="property-type">string | number | object | array<</span></dt>
         <dd>selected color value formatted as defined.</dd>
-        <dt>topic<span class="property-type">string | msg | flow | global</span></dt>
-        <dd>A string to identify the value. Can be defined as a constant Sting, by a message on the input or a context value in flow or global context.</dd>
     </dl>
 
     <h2>Configuration</h2>
@@ -55,7 +53,7 @@
         <li>LAB object: <code>{l: 360, a: 100, b: 100}</code></li>
         <li>LCH object: <code>{l: 360, c: 100, h: 100}</code></li>
         <li>Temperature <code>1000..40,000</code></li>
-        <li>Luminace <code>0..1</code></li>
+        <li>Luminance <code>0..1</code></li>
         <li>RGBW object: <code>{r: 255, g: 255, b: 255, w: 255}</code></li>
         <li>CIExyz object: <code>{x: 1, y: 1, z: 1}</code></li>
         <li>CIExy object: <code>{x: 1, y: 1}</code></li>
