@@ -86,6 +86,9 @@ module.exports = function(RED) {
                 node.status({fill:"blue", shape:'dot', text:"api("+msg.payload+")=" + color.hex() + "|" + config.outFormat});
               } else {
                 node.status({fill:statusColor, shape:'dot', text:"api callback ready"});
+                msg.payload = callbackColor;
+                node.send(msg);
+                return;
               }
             }
             if (Array.isArray(color)) {

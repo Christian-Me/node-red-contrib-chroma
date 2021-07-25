@@ -16,6 +16,13 @@ This node mostly is based on <a href="https://vis4.net/chromajs/">chroma.js</a> 
   * manipulate colors
   * generate color scales
 
+## latest updates
+
+### 0.0.3 
+* fix: return callback function
+* updated examples
+* various minor fixes and typos
+
 ## Install
 
 Either use the Editor - Menu - Manage Palette - Install option, or run the following command in your Node-RED user directory (typically `~/.node-red`) after installing Node-RED-dashboard.
@@ -26,7 +33,7 @@ Either use the Editor - Menu - Manage Palette - Install option, or run the follo
 
 Examples can be imported via **import/examples** in the top right menu of the editor
 
-1. `conversions` test of all available formats
+1. `conversions` test of all (except alpha channel) available formats
 2. `mix` use of chroma
 3. `interactive scale` use of chroma scales using the api (with a dashboard slider as input and a button to show the resulting color)
 
@@ -82,9 +89,11 @@ translates to
 
 This example will generate a six colors scale form yellow to dark green
 
-If the api call returns a function `msg.payload` will be used as it's parameter. If no `msg.payload` is sent the callback function is send to the output.
-
+If the api call returns a function `msg.payload` will be used as it's parameter.
 Subsequent messages (without `msg.api`) will return the result of the returned callback function
+
+If no `msg.payload` is sent the callback function is send to the output (to be tested further).
+
 
 ## output
 
