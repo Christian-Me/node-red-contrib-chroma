@@ -37,9 +37,19 @@ class ColorPlus {
       return this.rgb2xyz(array2object(this._color.rgb(false),['r','g','b']));
     }
   }
+  get xyzAlt1() {
+    if (this._color !== null) {
+      return this.rgb2xyzAlt1(array2object(this._color.rgb(false),['r','g','b']));
+    }
+  }
   get xy() {
     if (this._color !== null) {
       return this.rgb2xy(array2object(this._color.rgb(false),['r','g','b']));
+    }
+  }
+  get xyAlt1() {
+    if (this._color !== null) {
+      return this.rgb2xyAlt1(array2object(this._color.rgb(false),['r','g','b']));
     }
   }
 
@@ -121,13 +131,11 @@ class ColorPlus {
     var I = (((3 * argI) / (1 + 1/argH)) + w) / 255;
     var S = 1 - w / (255*I)
 
-    var output = {
-        h : limit(H) * 360,
-        s : limit(S),
-        v : limit(I)
-    }
-    //console.log(`rgbw2hsv`, input,output);
-    return output;
+    return [
+        limit(H) * 360,
+        limit(S),
+        limit(I)
+    ]
   }
   /**
   *  convert hsv color model into rgbW
@@ -168,14 +176,12 @@ class ColorPlus {
         g = 0;
         w = 255*(1-S)*I;
     }
-    var output = {
-        r: limit(r,0,255),
-        g: limit(g,0,255),
-        b: limit(b,0,255),
-        w: limit(w,0,255)
-    }
-    //console.log(`hsv2rgbw`, input,output);
-    return output;
+    return [
+        limit(r,0,255),
+        limit(g,0,255),
+        limit(b,0,255),
+        limit(w,0,255)
+    ]
   }
   /**
   * @brief Transform sRGB to CIE XYZ with the D65 white point
@@ -190,15 +196,40 @@ class ColorPlus {
   */
   rgb2xyz(input)
   {
-    let R = limit(this.invGammaSRGB(input.r / 255));
-    let G = limit(this.invGammaSRGB(input.g / 255));
-    let B = limit(this.invGammaSRGB(input.b / 255));
-    var output = {}
-    output.x = (0.4123955889674142161*R + 0.3575834307637148171*G + 0.1804926473817015735*B);
-    output.y = (0.2125862307855955516*R + 0.7151703037034108499*G + 0.07220049864333622685*B);
-    output.z = (0.01929721549174694484*R + 0.1191838645808485318*G + 0.9504971251315797660*B);
-    return output;
+    let R = this.invGammaSRGB(limit(input.r / 255));
+    let G = this.invGammaSRGB(limit(input.g / 255));
+    let B = this.invGammaSRGB(limit(input.b / 255));
+
+    return [
+      (0.4123955889674142161*R + 0.3575834307637148171*G + 0.1804926473817015735*B),
+      (0.2125862307855955516*R + 0.7151703037034108499*G + 0.07220049864333622685*B),
+      (0.01929721549174694484*R + 0.1191838645808485318*G + 0.9504971251315797660*B)
+    ];
   }
+  /**
+  * @brief Transform sRGB to CIE XYZ with the gamma correction (alternative Method)
+  *
+  *   @param  {object} input  {r:255,g:255,b:255}
+  *   @return {object} {x:1,y:1,z:1}
+  *
+  * 
+  */
+  rgb2xyzAlt1(input)
+  { 
+    //Apply a gamma correction to the RGB values, which makes the color more vivid and more the like the color displayed on the screen of your device
+    const gamma = 0.055;
+    var red 	= (input.r > 0.04045) ? Math.pow((input.r + 0.055) / (1.0 + 0.055), 2.4) : (input.r / 12.92);
+    var green 	= (input.g > 0.04045) ? Math.pow((input.g + 0.055) / (1.0 + 0.055), 2.4) : (input.g / 12.92);
+    var blue 	= (input.b > 0.04045) ? Math.pow((input.b + 0.055) / (1.0 + 0.055), 2.4) : (input.b / 12.92); 
+
+    //RGB values to XYZ using the Wide RGB D65 conversion formula
+    return [
+	    red * 0.664511 + green * 0.154324 + blue * 0.162028,
+	    red * 0.283881 + green * 0.668433 + blue * 0.047685,
+	    red * 0.000088 + green * 0.072310 + blue * 0.986039
+    ]
+  }
+
   /**
    * @brief Transform CIE XYZ to sRGB with the D65 white point
    *
@@ -227,11 +258,11 @@ class ColorPlus {
     }
   
     /* Transform from RGB to R'G'B' */
-    var output = {};
-    output.r = limit(this.forwardGammaSRGB(R1)*255,0,255);
-    output.g = limit(this.forwardGammaSRGB(G1)*255,0,255);
-    output.b = limit(this.forwardGammaSRGB(B1)*255,0,255);
-    return output;
+    return [
+      limit(this.forwardGammaSRGB(R1)*255,0,255),
+      limit(this.forwardGammaSRGB(G1)*255,0,255),
+      limit(this.forwardGammaSRGB(B1)*255,0,255)
+    ]
   }
   /**
   * @brief Transform sRGB to CIE XY with the D65 white point
@@ -241,14 +272,14 @@ class ColorPlus {
   **/
   rgb2xy(input) {
     input = this.rgb2xyz(input);
-    let x = input.x;
-    let y = input.y;
-    let z = input.z;
+    let x = input[0];
+    let y = input[1];
+    let z = input[2];
     
-    var output = {};
-    output.x = limit(x / (x + y + z));
-		output.y = limit(y / (x + y + z));
-		return output;
+    return [
+      limit(x / (x + y + z)),
+		  limit(y / (x + y + z))
+		]
   }
 }
 

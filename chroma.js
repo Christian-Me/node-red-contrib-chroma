@@ -52,7 +52,10 @@ module.exports = function(RED) {
           } else if (chroma.valid(msg.payload)) {
             color = chroma(msg.payload);
             node.status({fill:statusColor, shape:'dot', text:((inputColorType) ? inputColorType+'|' : "") + color.hex() + "|" + config.outFormat});
-          } else if (!msg.hasOwnProperty('api')) return withError('Input not supported! ('+msg.payload+')');
+          } else if (msg.payload.hasOwnProperty('temperature')) {
+            color = chroma.temperature(msg.payload.temperature);
+            node.status({fill:statusColor, shape:'dot', text:'temp:' + msg.payload.temperature+ '|' + color.hex() + "|" + config.outFormat});
+          } else if (!msg.hasOwnProperty('api')) return withError('Input not supported! ('+JSON.stringify(msg.payload)+')');
         } else {
           node.status({fill:'grey', shape:'dot', text:"no payload|" + (msg.hasOwnProperty('api') ? 'api|' : '') + config.outFormat});
         }
@@ -128,6 +131,7 @@ module.exports = function(RED) {
                 break;
               case 'chromaPlus':
                 output.push(chromaPlus(array2object(currentColor.rgb(),['r','g','b']))[functionDef[config.outFormat].method]);
+                if (config.array2object) output[output.length-1]=array2object(output[output.length-1],functionDef[config.outFormat].params);
                 break;
               default:
                 return withError("library unknown!");
