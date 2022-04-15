@@ -40,6 +40,14 @@ module.exports = function(RED) {
         var inputColorType = "";
         var statusColor = "green";
         if (msg.hasOwnProperty('payload')) {
+
+          // convert object keys to first letter only
+          if (typeof msg.payload === "object") {
+            Object.keys(msg.payload).forEach(key => {
+               msg.payload[key.charAt(0)] = msg.payload[key];
+               delete msg.payload[key];
+            });
+          }
           inputColorType = colorType(msg.payload);
           if (config.inputRelativeValues==='percent' && inputColorType!=='lab' && inputColorType!=='lch') msg.payload=scalePercent(msg.payload,0.01);
           if (callbackColor!==null) {

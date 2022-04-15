@@ -18,6 +18,8 @@ This node mostly is based on <a href="https://vis4.net/chromajs/">chroma.js</a> 
 
 ## latest updates
 
+### 0.0.5
+* improvement: color objects now support full named properties (i.e. "brightness" of "hue") by only reducing the key to the first letter
 ### 0.0.4
 * fix: input of as color temperature = `msg.payload.temperature`
 * improvement: support for color temperatures below 2000°K down to 1000°K
