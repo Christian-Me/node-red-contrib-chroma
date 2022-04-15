@@ -45,8 +45,10 @@ module.exports = function(RED) {
           // convert object keys to first letter only
           if (typeof msg.payload === "object") {
             Object.keys(msg.payload).forEach(key => {
-               msg.payload[(parameterTranslate[key.toLowerCase()]) ? parameterTranslate[key.toLowerCase()] : key.charAt(0)] = msg.payload[key];
-               delete msg.payload[key];
+              if (key.length>1) {
+                msg.payload[(parameterTranslate[key.toLowerCase()]) ? parameterTranslate[key.toLowerCase()] : key.charAt(0)] = msg.payload[key];
+                delete msg.payload[key];
+              }
             });
           }
           inputColorType = colorType(msg.payload);
