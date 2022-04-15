@@ -39,12 +39,13 @@ module.exports = function(RED) {
         // set chroma value
         var inputColorType = "";
         var statusColor = "green";
+        var parameterTranslate = {"brightness":"l"};
         if (msg.hasOwnProperty('payload')) {
 
           // convert object keys to first letter only
           if (typeof msg.payload === "object") {
             Object.keys(msg.payload).forEach(key => {
-               msg.payload[key.charAt(0)] = msg.payload[key];
+               msg.payload[(parameterTranslate[key.toLowerCase()]) ? parameterTranslate[key.toLowerCase()] : key.charAt(0)] = msg.payload[key];
                delete msg.payload[key];
             });
           }
