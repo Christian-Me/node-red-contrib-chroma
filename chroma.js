@@ -63,9 +63,9 @@ module.exports = function(RED) {
           } else if (chroma.valid(msg.payload)) {
             color = chroma(msg.payload);
             node.status({fill:statusColor, shape:'dot', text:((inputColorType) ? inputColorType+'|' : "") + color.hex() + "|" + config.outFormat});
-          } else if (msg.payload.hasOwnProperty('temperature')) {
-            color = chroma.temperature(msg.payload.temperature);
-            node.status({fill:statusColor, shape:'dot', text:'temp:' + msg.payload.temperature+ '|' + color.hex() + "|" + config.outFormat});
+          } else if (msg.payload.hasOwnProperty('t')) {
+            color = chroma.temperature(msg.payload.t);
+            node.status({fill:statusColor, shape:'dot', text:'temp:' + msg.payload.t+ '|' + color.hex() + "|" + config.outFormat});
           } else if (!msg.hasOwnProperty('api')) return withError('Input not supported! ('+JSON.stringify(msg.payload)+')');
         } else {
           node.status({fill:'grey', shape:'dot', text:"no payload|" + (msg.hasOwnProperty('api') ? 'api|' : '') + config.outFormat});
